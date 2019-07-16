@@ -1,15 +1,13 @@
 ﻿
 @model IList<ABCRestaurant.Web.Models.Menu>
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_HaderLayout.cshtml";
 }
-
 <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <link href="~/css/Menu/MenuStyleSheet.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-<h3 class="h3">ABC Restaurants Menues</h3>
 @if (Model != null)
 {
     <div class="container">
