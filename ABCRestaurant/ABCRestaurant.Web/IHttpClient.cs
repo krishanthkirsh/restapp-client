@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ABCRestaurant.Web.Models
+namespace ABCRestaurant.Web
 {
-    public class User : Entity<int>
+    public interface IHttpClient
     {
-        public string UserName { get; set; }
+        Task<List<T>> GetListAsync<T>(string api);
     }
 }

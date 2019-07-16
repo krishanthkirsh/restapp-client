@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace ABCRestaurant.Web.Models
 {
-    public class User : Entity<int>
+    public class Entity<T>
     {
-        public string UserName { get; set; }
+        public T Id { get; set; }
     }
 }

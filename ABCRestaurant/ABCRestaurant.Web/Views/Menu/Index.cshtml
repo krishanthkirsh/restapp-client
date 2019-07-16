@@ -1,4 +1,5 @@
 ﻿
+@model IList<ABCRestaurant.Web.Models.Menu>
 @{
     Layout = null;
 }
@@ -7,85 +8,35 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <link href="~/css/Menu/MenuStyleSheet.css" rel="stylesheet" />
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<h3 class="h3">ABC Restaurants Menues</h3>
+@if (Model != null)
+{
+    <div class="container">
+        <div class="row">
+            @for (int i = 0; i < Model.Count(); i++)
+            {
 
-<div class="container">
-    <h3 class="h3">shopping Demo-1 </h3>
-    <div class="row">
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid4">
-                <div class="product-image4">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
-                    </a>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                    <div class="price">
-                        $14.40
-                        <span>$16.00</span>
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid4">
+                        <div class="product-image4">
+                            <a href="#">
+                                <img class="pic-1" src="~/images/Chicken-Burger.jpg">
+                                <img class="pic-2" src="~/images/fillet-burger1-690x400.jpg">
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="title"><a href="#">@Model[i].Description</a></h3>
+                            <div class="price">
+                                $@Model[i].Price
+                            </div>
+                            <a class="add-to-cart" href="">ADD TO CART</a>
+                        </div>
                     </div>
-                    <a class="add-to-cart" href="">ADD TO CART</a>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid4">
-                <div class="product-image4">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-3.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-4.jpg">
-                    </a>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Blue Shirt</a></h3>
-                    <div class="price">
-                        $17.60
-                        <span>$20.00</span>
-                    </div>
-                    <a class="add-to-cart" href="">ADD TO CART</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid4">
-                <div class="product-image4">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-5.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-6.jpg">
-                    </a>
-                    <span class="product-new-label">New</span>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                    <div class="price">
-                        $14.40
-                        <span>$16.00</span>
-                    </div>
-                    <a class="add-to-cart" href="">ADD TO CART</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid4">
-                <div class="product-image4">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-7.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-8.jpg">
-                    </a>
-                    <span class="product-new-label">New</span>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                    <div class="price">
-                        $14.40
-                        <span>$16.00</span>
-                    </div>
-                    <a class="add-to-cart" href="">ADD TO CART</a>
-                </div>
-            </div>
+
+            }
         </div>
     </div>
-</div>
+
+}
