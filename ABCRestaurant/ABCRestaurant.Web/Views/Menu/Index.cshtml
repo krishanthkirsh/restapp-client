@@ -28,7 +28,7 @@
                             <div class="price">
                                 $@Model[i].Price
                             </div>
-                            <a class="add-to-cart" href="">ADD TO CART</a>
+                            <button class="add-to-cart" onclick="@("window.location.href='" + @Url.Action("index", "Order",new { ID = Model[i].Id }) + "'");">ADD TO CART</button>
                         </div>
                     </div>
                 </div>
@@ -38,3 +38,4 @@
     </div>
 
 }
+
