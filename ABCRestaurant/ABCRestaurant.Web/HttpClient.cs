@@ -27,5 +27,17 @@ namespace ABCRestaurant.Web
             }
             return ModelList;
         }
+
+        public async Task<T> GetByIdAsync<T>(string Id,string api)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var Item = await client.GetAsync(Apiurl+api+"/"+Id);
+            T model = default;
+            if (Item.IsSuccessStatusCode)
+            {
+                model = await Item.Content.ReadAsAsync<T>();
+            }
+            return model;
+        }
     }
 }

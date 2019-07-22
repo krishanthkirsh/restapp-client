@@ -1,4 +1,4 @@
-﻿
+﻿@model ABCRestaurant.Web.Models.Menu;
 @{
     ViewData["Title"] = "Order";
     Layout = "~/Views/Shared/_HaderLayout.cshtml";
@@ -15,13 +15,13 @@
                         </div>
                         <div class="food__menu__details">
                             <div class="food__menu__content">
-                                <h2>Taco Club Berrito</h2>
+                                <h2>@Model.Description</h2>
                                 <ul class="food__dtl__prize d-flex">
-                                    <li>$40</li>
+                                    <li>$@Model.Price</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incid dunt ut labo dolore magna aliqua. Ut enim ad minim veniaquis nostrud exercit ullamco laboris nisi ut aliq.</p>
                                 <div class="product-action-wrap">
-                                    <div class="prodict-statas"><span>Food Type : Taco</span></div>
+                                    <div class="prodict-statas"><span>@Model.Name : @Model.Description</span></div>
                                     <div class="product-quantity">
                                         <form id="myform" method="POST" action="#">
                                             <div class="product-quantity">

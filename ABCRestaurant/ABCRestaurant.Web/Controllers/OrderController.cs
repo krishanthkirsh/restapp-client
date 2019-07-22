@@ -9,9 +9,15 @@ namespace ABCRestaurant.Web.Controllers
 {
     public class OrderController : Controller
     {
-        public IActionResult Index(string ID)
+        private readonly IHttpClient _httpClient;
+        public OrderController(IHttpClient httpClient)
         {
-            return View();
+            this._httpClient = httpClient;
+        }
+        public async Task<IActionResult> Index(string ID)
+        {
+            Menu menuList = await _httpClient.GetByIdAsync<Menu>(ID,"api/Menu");
+            return View(menuList);
         }
     }
 }

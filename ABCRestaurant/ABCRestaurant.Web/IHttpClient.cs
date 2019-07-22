@@ -8,5 +8,6 @@ namespace ABCRestaurant.Web
     public interface IHttpClient
     {
         Task<List<T>> GetListAsync<T>(string api);
+        Task<T> GetByIdAsync<T>(string Id, string api);
     }
 }
