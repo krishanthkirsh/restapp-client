@@ -10,14 +10,21 @@ namespace ABCRestaurant.Web.Controllers
 {
     public class MenuController : Controller
     {
-        private readonly IHttpClient _httpClient;
-        public MenuController(IHttpClient httpClient)
+        private readonly IHttpClientFactory _clientFactory;
+        public MenuController(IHttpClientFactory clientFactory)
         {
-            this._httpClient = httpClient;
+            this._clientFactory = clientFactory;
         }
         public async Task<IActionResult> Index()
         {
-            List<Menu> menuList = await _httpClient.GetListAsync<Menu>("api/Menu");
+            List<Menu> menuList = null;
+            var request = new HttpRequestMessage(HttpMethod.Get, "api/Menu");
+            var client = _clientFactory.CreateClient("ABCRestaurantApi");
+            var response = await client.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                menuList = await response.Content.ReadAsAsync<List<Menu>>();
+            }
             return View(menuList);
         }
     }

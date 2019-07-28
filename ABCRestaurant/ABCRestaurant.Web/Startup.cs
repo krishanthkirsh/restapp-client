@@ -33,9 +33,12 @@ namespace ABCRestaurant.Web
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddScoped<IHttpClient, HttpClient>();
-            services.AddSingleton<IConfiguration>(Configuration);
-            services.AddHttpClient();
+            services.AddHttpClient("ABCRestaurantApi", c =>
+            {
+                c.BaseAddress = new Uri("http://localhost:32273");
+                c.DefaultRequestHeaders.Add("Accept", "application/json");
+                c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactoryTesting");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
