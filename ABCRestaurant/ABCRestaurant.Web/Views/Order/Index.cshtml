@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_HaderLayout.cshtml";
 }
 <link href="~/css/style.css" rel="stylesheet" />
+<script src="~/js/Order.js"></script>
 <section class="blog__list__view section-padding--lg menudetails-right-sidebar bg--white">
     <div class="container">
         <div class="row">
@@ -17,7 +18,7 @@
                             <div class="food__menu__content">
                                 <h2>@Model.Description</h2>
                                 <ul class="food__dtl__prize d-flex">
-                                    <li>$@Model.Price</li>
+                                    <li id="priceAmount">@Model.Price</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incid dunt ut labo dolore magna aliqua. Ut enim ad minim veniaquis nostrud exercit ullamco laboris nisi ut aliq.</p>
                                 <div class="product-action-wrap">
@@ -26,9 +27,11 @@
                                         <form id="myform" method="POST" action="#">
                                             <div class="product-quantity">
                                                 <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="01">
-                                                    <div class="add__to__cart__btn">
-                                                        <a class="food__btn" href="cart.html">Add To Cart</a>
+                                                    <div class="list__btn">
+                                                        <input id="qtytxt" class="cart-plus-minus-box" type="text" name="qtybutton" value="01">
+                                                    </div>
+                                                    <div class="cart-plus-minus" style="margin-top:80px">
+                                                        <a class="food__btn grey--btn theme--hover" href="" onclick="OrderNow()">Order Now</a>
                                                     </div>
                                                     
                                                 </div>
@@ -41,6 +44,11 @@
                     </div>
                     <!-- Start Product Descrive Area -->
                     <div class="menu__descrive__area">
+                        <div id="user" class="menu__nav nav nav-tabs" role="tablist">
+                            <select id="userSelection" class="menu__nav">
+                                <option value="0">Select The User</option>
+                            </select>
+                        </div>
                         <div class="menu__nav nav nav-tabs" role="tablist">
                             <a class="active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab">Description</a>
                         </div>

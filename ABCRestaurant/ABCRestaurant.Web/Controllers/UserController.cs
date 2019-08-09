@@ -12,23 +12,28 @@ namespace ABCRestaurant.Web.Controllers
     public class UserController : Controller
     {
         // GET: User
-        private readonly IHttpClientFactory _httpClientFactory;
-        private const string Apiurl = "http://localhost:32273/api/User/";
+        private readonly IHttpClientFactory _clientFactory;
 
-        public UserController(IHttpClientFactory httpClientFactory)
+        public UserController(IHttpClientFactory clientFactory)
         {
-            this._httpClientFactory = httpClientFactory;
+            this._clientFactory = clientFactory;
         }
         public async Task<ActionResult> Index()
         {
-            var client = _httpClientFactory.CreateClient();
-            var claimTerm1s = await client.GetAsync(Apiurl);
-            List<User> UserModel;
-            if (claimTerm1s.IsSuccessStatusCode)
-            {
-                UserModel = await claimTerm1s.Content.ReadAsAsync<List<User>>();
-            }
             return View();
+        }
+
+        public async Task<List<User>> GetUserListAsync()
+        {
+            List<User> users = null;
+            var request = new HttpRequestMessage(HttpMethod.Get, "api/User");
+            var client = _clientFactory.CreateClient("ABCRestaurantApi");
+            var response = await client.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                users = await response.Content.ReadAsAsync<List<User>>();
+            }
+            return users;
         }
 
         // GET: User/Details/5

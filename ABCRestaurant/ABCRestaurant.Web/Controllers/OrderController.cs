@@ -27,5 +27,10 @@ namespace ABCRestaurant.Web.Controllers
             }
             return View(menu);
         }
+
+        public IActionResult checkout()
+        {
+            return View();
+        }
     }
 }
