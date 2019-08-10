@@ -1,4 +1,4 @@
-﻿@model ABCRestaurant.Web.Models.Menu;
+﻿@model ABCRestaurant.Web.Models.ViewModel;
 @{
     ViewData["Title"] = "Order";
     Layout = "~/Views/Shared/_HaderLayout.cshtml";
@@ -16,13 +16,13 @@
                         </div>
                         <div class="food__menu__details">
                             <div class="food__menu__content">
-                                <h2>@Model.Description</h2>
+                                <h2>@Model.MenuModel.Description</h2>
                                 <ul class="food__dtl__prize d-flex">
-                                    <li id="priceAmount">@Model.Price</li>
+                                    <li id="priceAmount">@Model.MenuModel.Price</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incid dunt ut labo dolore magna aliqua. Ut enim ad minim veniaquis nostrud exercit ullamco laboris nisi ut aliq.</p>
                                 <div class="product-action-wrap">
-                                    <div class="prodict-statas"><span>@Model.Name : @Model.Description</span></div>
+                                    <div class="prodict-statas"><span>@Model.MenuModel.Name : @Model.MenuModel.Description</span></div>
                                     <div class="product-quantity">
                                         <form id="myform" method="POST" action="#">
                                             <div class="product-quantity">
@@ -31,7 +31,7 @@
                                                         <input id="qtytxt" class="cart-plus-minus-box" type="text" name="qtybutton" value="01">
                                                     </div>
                                                     <div class="cart-plus-minus" style="margin-top:80px">
-                                                        <a class="food__btn grey--btn theme--hover" href="" onclick="OrderNow()">Order Now</a>
+                                                        <a class="food__btn grey--btn theme--hover" href="" onclick="OrderNow(@Model.MenuModel.Id);">Order Now</a>
                                                     </div>
                                                     
                                                 </div>

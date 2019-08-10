@@ -1,10 +1,11 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+﻿var Order = {
+    url: "http://localhost:40214/"
+}
+
+document.addEventListener('DOMContentLoaded', function () {
     loaduser();
     var usid = sessionStorage.getItem("UserId");
-    if (usid > 0)
-        $('#user').hide();
-    else
-        $('#user').show();
+    (usid > 0) ? $('#user').hide() : $('#user').show();
 
     $("#userSelection").change(function () {
         userid = $("#userSelection").val();
@@ -15,10 +16,8 @@
 
 
 var loaduser = function () {
-    console.log("Function Is called");
-
     $.ajax({
-        url: 'http://localhost:40214/User/GetUserListAsync',
+        url: Order.url + 'User/GetUserListAsync',
         dataType: 'json',
         type: 'Get',
         success: function (data) {
@@ -31,10 +30,21 @@ var loaduser = function () {
     });
 }
 
-var OrderNow = function () {
+var OrderNow = function (MenuModelID) {
     var usid = sessionStorage.getItem("UserId");
     if (usid > 0) {
-
+        $.ajax({
+            url: Order.url + 'Order/OrderNow',
+            data: {
+                UserId: usid,
+                menu: MenuModelID
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                alert('data' + data);
+            }
+        });
     }
     else {
         alert("Select the user");
