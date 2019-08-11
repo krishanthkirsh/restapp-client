@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ABCRestaurant.Web.BusinessClass
 {
-    public interface IUserInterface
+    public interface IOrderService
     {
-        Task<List<User>> GetUserListAsync();
-        Task<User> GetUserByIdAsync(string Id);
+        Task<string> AddOrder(Order viewModel);
     }
 }

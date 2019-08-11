@@ -13,10 +13,12 @@ namespace ABCRestaurant.Web.Controllers
     {
         private readonly IMenuService _menuService;
         private readonly IUserInterface _userInterface;
-        public OrderController(IMenuService menuService, IUserInterface userInterface)
+        private readonly IOrderService _orderService;
+        public OrderController(IMenuService menuService, IUserInterface userInterface, IOrderService orderService)
         {
             this._menuService = menuService;
             this._userInterface = userInterface;
+            this._orderService = orderService;
         }
         public async Task<IActionResult> Index(string ID)
         {
@@ -37,10 +39,17 @@ namespace ABCRestaurant.Web.Controllers
             return View();
         }
 
-        public ErrorViewModel OrderNow(string UserId, string menu)
+        public async Task OrderNow(string UserId, string menu , string Date)
         {
-            ErrorViewModel model = null;
-            return model;
+            Menu menuobj = await _menuService.GetMenuByIdAsync(menu);
+            User userobj = await _userInterface.GetUserByIdAsync(UserId);
+            Order order = new Order
+            {
+                OrderDate = Date,
+                MenuItem = menuobj,
+                ProfileUser = userobj
+            };
+            string message = await _orderService.AddOrder(order);
         }
     }
 }

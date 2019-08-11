@@ -46,7 +46,10 @@
                     <div class="menu__descrive__area">
                         <div id="user" class="menu__nav nav nav-tabs" role="tablist">
                             <select id="userSelection" class="menu__nav">
-                                <option value="0">Select The User</option>
+                                @foreach (var item in Model.UserList)
+                                {
+                                    <option value='@item.Id'>@item.UserName</option>
+                                }
                             </select>
                         </div>
                         <div class="menu__nav nav nav-tabs" role="tablist">

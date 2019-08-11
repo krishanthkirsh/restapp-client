@@ -15,6 +15,20 @@ namespace ABCRestaurant.Web.BusinessClass
         {
             this._clientFactory = clientFactory;
         }
+
+        public async Task<User> GetUserByIdAsync(string Id)
+        {
+            User users = null;
+            var request = new HttpRequestMessage(HttpMethod.Get, "api/User/"+Id);
+            var client = _clientFactory.CreateClient("ABCRestaurantApi");
+            var response = await client.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                users = await response.Content.ReadAsAsync<User>();
+            }
+            return users;
+        }
+
         public async Task<List<User>> GetUserListAsync()
         {
             List<User> users = null;

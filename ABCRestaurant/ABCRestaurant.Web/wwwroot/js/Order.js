@@ -1,9 +1,9 @@
 ﻿var Order = {
-    url: "http://localhost:40214/"
+    url: "http://localhost:40214/" 
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    loaduser();
+    //loaduser();
     var usid = sessionStorage.getItem("UserId");
     (usid > 0) ? $('#user').hide() : $('#user').show();
 
@@ -32,12 +32,15 @@ var loaduser = function () {
 
 var OrderNow = function (MenuModelID) {
     var usid = sessionStorage.getItem("UserId");
+    var current_datetime = new Date();
+    var formatted_date = current_datetime.getDate() + '/' + (current_datetime.getMonth() + 1) + '/' + current_datetime.getFullYear() + '-' + current_datetime.getMinutes() + ':' + current_datetime.getSeconds();
     if (usid > 0) {
         $.ajax({
             url: Order.url + 'Order/OrderNow',
             data: {
                 UserId: usid,
-                menu: MenuModelID
+                menu: MenuModelID,
+                Date: formatted_date
             },
             dataType: 'json',
             type: 'post',
