@@ -43,10 +43,14 @@ var OrderNow = function (MenuModelID) {
                 Date: formatted_date
             },
             dataType: 'json',
-            type: 'post',
+            type: 'POST',
             success: function (data) {
-                alert('data' + data);
-            }
+                alert(data);
+            },
+            error: function (data) {
+                alert('error' + data);
+            },
+            async: false
         });
     }
     else {

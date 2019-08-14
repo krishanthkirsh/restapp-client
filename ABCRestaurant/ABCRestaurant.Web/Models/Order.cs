@@ -9,7 +9,9 @@ namespace ABCRestaurant.Web.Models
         :Entity<int>
     {
         public string OrderDate { get; set; }
-        public virtual Menu MenuItem { get; set; }
-        public virtual User ProfileUser { get; set; }
+        public int? MenuId { get; set; }
+        public int? UserId { get; set; }
+        public Menu Menu { get; set; }
+        public User User { get; set; }
     }
 }

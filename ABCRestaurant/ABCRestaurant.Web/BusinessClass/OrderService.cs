@@ -28,7 +28,7 @@ namespace ABCRestaurant.Web.BusinessClass
             var response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
-                successMessage = "Successfuly Added";
+                successMessage = "Successfully Added";
             }
             return successMessage;
         }

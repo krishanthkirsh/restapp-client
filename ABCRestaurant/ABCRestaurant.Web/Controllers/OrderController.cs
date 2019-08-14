@@ -34,22 +34,28 @@ namespace ABCRestaurant.Web.Controllers
             return View(viewModel);
         }
 
-        public IActionResult checkout()
-        {
-            return View();
-        }
-
-        public async Task OrderNow(string UserId, string menu , string Date)
+        public async Task<IActionResult> checkout(string menu, string UserId)
         {
             Menu menuobj = await _menuService.GetMenuByIdAsync(menu);
-            User userobj = await _userInterface.GetUserByIdAsync(UserId);
+            User user = await _userInterface.GetUserByIdAsync(UserId);
+            Order order = new Order
+            {
+                Menu = menuobj,
+                User = user
+            };
+            return View(order);
+        }
+
+        public async Task<JsonResult> OrderNow(string UserId, string menu, string Date)
+        {
             Order order = new Order
             {
                 OrderDate = Date,
-                MenuItem = menuobj,
-                ProfileUser = userobj
+                MenuId = Convert.ToInt32(menu),
+                UserId = Convert.ToInt32(UserId)
             };
             string message = await _orderService.AddOrder(order);
+            return Json(message);
         }
     }
 }
